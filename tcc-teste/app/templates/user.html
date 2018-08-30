@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<table>
+  <tr class="vertical-align:center">
+    <td><img class="editaImagem" style="width: 90%" src="{{ user.avatar(150) }}"></td>
+
+    <td>
+      <h1>  Usuário: {{ user.nome }}</h1>
+      <p>  Email: {{ user.email }}</p>
+      {% if user.last_seen %}
+      <p>  Última visualização: {{ moment(current_user.last_seen).format('LLL') }}</p>
+      {% endif %}
+      <a href="{{ url_for('deletar') }}"><span class="glyphicon glyphicon-trash"></span>  Excluir perfil</a>   ---  
+      {% if user == current_user %}
+      <a href="{{ url_for('edit_profile') }}"><span class="glyphicon glyphicon-pencil"></span> Editar perfil</a>
+      {% endif %}
+    </td>
+  </tr>
+
+</table>
+
+{% endblock %}

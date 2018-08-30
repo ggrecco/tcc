@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
+{% for servidor in servidores %}
+<div class="page-header text-center">
+    <h1>Dados do site:  {{servidor.url}}</h1>
+    <h2>Registrado como: {{servidor.nome}}</h2>
+    <h6><a onclick="imprimir()" class="btn btn-primary" href="{{ url_for('imprimir_todos', nome=servidor.nome) }}" target="_blank"><span class="glyphicon glyphicon-print"></span> Gerar PDF todos</a>
+    <a class="btn btn-warning" href="{{ url_for('selecionar_faixa_imprimir', nome=servidor.nome) }}"><span class="glyphicon glyphicon-print"></span> Selecionar faixa para impressão</a></h6>
+    <hr>
+    Marcar:
+    <a href="{{ url_for('marcaTodos', servidor=servidor.nome, selecao='1') }}"><input type="button" onclick="clickLoad()" class="btn btn-primary" name="chkAll" onClick="checkAll(this)" value="Todos" /></a>
+    <a href="{{ url_for('marcaTodos', servidor=servidor.nome, selecao='2') }}"><input type="button" onclick="clickLoad()" class="btn btn-warning" name="chkAll" onClick="checkAll(this)" value="Reverter" /></a>
+    <a href="{{ url_for('marcaTodos', servidor=servidor.nome, selecao='0') }}"><input type="button" onclick="clickLoad()" class="btn btn-success" name="chkAll" onClick="checkAll(this)" value="Desmarcar" /></a>
+    <a onclick="imprimir()" class="btn btn-sucess" href="{{ url_for('imprimir_todos_checkbox', nome=servidor.nome)}}" target="_blank"><span class="glyphicon glyphicon-print"></span> imprimir faltantes</a>
+</div>
+<div class="row">
+<div class="table-responsive col-md-12">
+<table id="myTable" class="table table-striped">
+	<thead>
+		<tr>
+        <th class="text-center">seleção</th>
+        <th class="text-center">Serviço</th>
+        <th class="text-center">CVEID</th>
+        <th class="text-center">Nota</th>
+      <th class="text-center">Resumo</th>
+    </tr>
+  </thead>
+<tbody>
+{% for dado in dados %}
+    <tr>
+        {% if dado.check != '1' %}
+        <td class="text-center" id="{{dado.check}}"><a type="checkbox" href="{{ url_for('marcas', cveid=dado.cveid, servidor=servidor.nome) }}"><input type="checkbox"></a></td>
+        {% else %}
+        <td class="text-center" id="{{dado.check}}"><a type="checkbox" href="{{ url_for('marcas', cveid=dado.cveid, servidor=servidor.nome) }}"><input type="checkbox" checked></a></td>
+        {% endif %}
+        <td class="text-center">{{ dado.produto }}</td>
+        <td class="text-center"><a href="{{ url_for('vul', cveid=dado.cveid, nome=servidor.nome) }}">{{ dado.cveid }}</a></td>
+      {% if dado.nota < 4.0 %}
+        <td style="background-color:#00c400" class="text-center"><b>{{ dado.nota }}</b></td>
+      {% elif dado.nota >= 4.0 and dado.nota < 7.0 %}
+        <td style="background-color:#d1ff00" class="text-center"><b>{{ dado.nota }}</b></td>
+      {% elif dado.nota >= 7.0 and dado.nota < 9.0 %}
+        <td style="background-color:#ff9c20" class="text-center"><b>{{ dado.nota }}</b></td>
+      {% else %}
+        <td style="background-color:#ff0000" class="text-center"><b>{{ dado.nota }}</b></td>
+      {% endif %}
+        <td>{{ dado.comentario }}</td>
+    </tr>
+{% endfor %}
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+{% endblock %}

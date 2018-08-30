@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
+{% for servidor in servidores %}
+<table>
+  <h1>Site:  {{servidor.url}}</h1>
+  <tr>
+    <td>
+      <img class="editaImagem" style="width: 80%;" src="{{url_for('static', filename='img/nota.png')}}">
+    </td>
+    <td>
+      {{ wtf.quick_form(form, button_map={'submit' : 'btn btn-primary'}) }}
+    </td>
+  </tr>
+</table>
+{% endfor %}
+{% endblock %}

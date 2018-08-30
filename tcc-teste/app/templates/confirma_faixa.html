@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+{% for servidor in servidores %}
+<table>
+  <h1>Olá {{ current_user.nome }}, o deseja fazer?</h1>
+  <h3>Imprimir relatório entre {{ minimo }} e {{ maximo }}</h3>
+  <tr>
+    <td>
+      <img class="editaImagem" style="width: 80%;" src="{{url_for('static', filename='img/faq.png')}}">
+    </td>
+    <td>
+      <a href="{{ url_for('confirma', nome=nome, minimo=minimo, maximo=maximo) }}" class="btn btn-primary btn-lg" target="_blank" onclick="imprimir()"><span class="glyphicon glyphicon-print"></span> Imprimir faixa selecionada</a><br />
+      <a class="btn btn-success btn-lg" href="{{ url_for('selecionar_faixa_imprimir', nome=servidor.nome) }}"><span class="glyphicon glyphicon-retweet"></span> mudar faixa de impressão</a><br />
+      <a href="{{ url_for('index') }}">início</a>
+    </td>
+  </tr>
+</table>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "baseImprimir.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
+{% for servidor in servidores %}
+<div class="page-header text-center">
+    <h1>Dados do site:  {{servidor.url}}</h1>
+    <h2>Registrado como: {{servidor.nome}}</h2>
+    <hr>
+</div>
+<div class="row">
+<div class="table-responsive col-md-12">
+<table id="myTable" class="table table-striped">
+	<thead>
+		<tr>
+            <th>Serviço</th>
+			<th>Porta</th>
+            <th>CVEID</th>
+            <th>Tipo de Falha</th>
+            <th>Data da Correção</th>
+            <th>Nota</th>
+            <th>Resumo</th>
+        </tr>
+    </thead>
+<tbody>
+{% for dado in dados %}
+    <tr>
+        <td>{{ dado.produto }}</td>
+        <td>{{ dado.porta }}</td>
+        <td>{{ dado.cveid }}</td>
+        <td>{{ dado.tipo }}</td>
+        <td>{{ dado.datacorrecao }}</td>
+        <td>{{ dado.nota }}</td>
+        <td>{{ dado.comentario }}</td>
+    </tr>
+{% endfor %}
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<table>
+  <tr valign="center">
+    <td><img class="editaImagem" style="width: 95%;" src="{{url_for('static', filename='img/sucesso.png')}}"></td>
+
+    <td><h1>Olá, {{ current_user.nome }}!</h1></td>
+  </tr>
+</table>
+<br />
+<h4>
+<p>Resumo:</p>
+<p><i>Este é um software para analise de vulnerabilidades em servidores web. O Software apresenta a analise de algumas falhas, classifica quais erros são de maior preocupação e cadastra um usuário para utilizar o software.</i></p>
+<ol>
+  <li>Na aba <a href="{{ url_for('servidor') }}"><i>Pesquisar</i></a> você poderá cadastra o servidor que será alvo da varrredura.</li>
+  <li>Na aba <a onclick="clickLoad()" href="{{ url_for('ver_servidor', username=current_user.nome) }}"><i>Servidores</i></a> você visualizar o resultado da(s) analise(s).</li>
+  <li>Na aba <a href="{{ url_for('user', username=current_user.nome) }}"><i>Perfil</i></a> você poderá ver algumas informações cadastradas.</li>
+</ol>
+</h4>
+{% endblock %}

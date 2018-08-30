@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Aula População</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+  </head>
+  <body>
+    <div style="text-align: center;">
+      <h1>Servidor:<i> {{nome}}</i></h1>
+    <div class="" id="myfirstchart">
+    </div>
+    <a href="/index">voltar</a>
+  </div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+var dados = {{ dados | safe }} ;
+//document.getElementById('mychart').innerHTML=document.write('hahahahaha');
+//new Morris.Area({
+//new Morris.Bar({
+//new Morris.Line({
+new Morris.Bar({
+  // ID of the element in which to draw the chart.
+  element: 'myfirstchart',
+  // Chart data records -- each entry in this array corresponds to a point on
+  // the chart.
+  data: dados,
+  // The name of the data record attribute that contains x-values.
+  xkey: 'COR',
+  // A list of names of data record attributes that contain y-values.
+  ykeys: ['NOTA','TNOTA'],
+  // Labels for the ykeys -- will be displayed when you hover over the
+  // chart.
+  labels: ['Pendentes', 'Total']
+});
+
+//]]>
+
+</script>
+
+  </body>
+</html>

@@ -1,0 +1,36 @@
+{% extends "baseImprimir.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
+<div class="page-header text-center">
+    <h1>Dados do site:  {{ site }}</h1>
+    <hr>
+</div>
+<div class="row">
+  <div class="col-md-3"></div>
+<div class="table-responsive col-md-6">
+<table id="myTable" class="table table-striped">
+	<thead>
+		<tr>
+            <th class="text-center">Servidor</th>
+            <th class="text-center">IP</th>
+			      <th class="text-center">Verde</th>
+            <th class="text-center">Amarelo</th>
+            <th class="text-center">Laranja</th>
+            <th class="text-center">Vermelho</th>
+        </tr>
+    </thead>
+<tbody>
+    <tr>
+        <td class="text-center">{{ nome }}</td>
+        <td class="text-center">{{ ip }}</td>
+        <td class="text-center">{{ verde }} / {{ tverde }}</td>
+        <td class="text-center">{{ amarelo }} / {{ tamarelo }}</td>
+        <td class="text-center">{{ laranja }} / {{ tlaranja }}</td>
+        <td class="text-center">{{ vermelho }} / {{ tvermelho }}</td>
+    </tr>
+</tbody>
+</table>
+</div>
+</div>
+
+{% endblock %}

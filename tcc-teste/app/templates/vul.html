@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block app_content %}
+<div class="table-responsive col-md-12">
+<table class="table table-striped border-spacing padding">
+	<thead>
+		<tr>
+      <th class="text-center">Serviço</th>
+			<th class="text-center">Porta</th>
+            <th class="text-center">CVEID</th>
+      <th class="text-center">Tipo de Falha</th>
+      <th class="text-center">Data da Correção</th>
+      <th class="text-center">Nota</th>
+      <th class="text-center">Permissão de Acesso</th>
+      <th class="text-center">Resumo</th>
+    </tr>
+  </thead>
+{% for dado in dados %}
+<tr class="text-center">
+    <!-- {{ dado.usuario_id }} - -->
+    <td>{{ dado.produto }}</td>
+    <td>{{ dado.porta }}</td>
+    <td>{{ dado.cveid }}<p><a onclick="redireciona()" href="https://www.cvedetails.com/cve/{{ dado.cveid }}/" target="_blank">Link site</a></p></td>
+    <td>{{ dado.tipo }}</td>
+    <td>{{ dado.datacorrecao }}</td>
+    <td>{{ dado.nota }}</td>
+    <td>{{ dado.acesso }}</td>
+    <td>{{ dado.comentario }}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}

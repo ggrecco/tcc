@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <h2>Utilize seu leitor QR para <p>realizar login com seu celular.</p> </h2>
+    <!-- <img class="background-image" src="{{url_for('static', filename='img/QR.png')}}"> -->
+    <!-- 192.168.15.8:8080 -->
+    <img class="background-image" src="{{url_for('static', filename='img/qr.png')}}">
+    <!-- 192.168.43.1:8080 -->
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<table>
+  <tr>
+    <h1>Olá {{ current_user.nome }}, informe os dados abaixos:</h1>
+    <td><img class="editaImagem" style="width: 95%;" src="{{url_for('static', filename='img/Servers2.png')}}" ></td>
+    <td>
+      {{ wtf.quick_form(form, button_map={'registro' : 'btn btn-primary btn-lg'}) }}
+    </td>
+  </tr>
+</table>
+{% endblock %}

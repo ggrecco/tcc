@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
+<table>
+  <h1>Deseja realmente Excluir seu Perfil?</h1>
+  <tr>
+    <td>
+      <img class="editaImagem" style="width: 80%;" src="{{url_for('static', filename='img/Proibido.jpg')}}">
+    </td>
+    <td>
+      {{ wtf.quick_form(form, button_map={'submit' : 'btn btn-danger btn-block'}) }}
+      <a class="btn btn-primary btn-block" href="{{ url_for('index') }}">voltar</a>
+    </td>
+    <td>
+      <img class="editaImagem" style="width: 80%;" src="{{url_for('static', filename='img/Proibido.jpg')}}">
+    </td>
+  </tr>
+
+</table>
+
+{% endblock %}

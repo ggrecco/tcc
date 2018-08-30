@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <h1>Ocorreu um erro ;(</h1>
+    <h4>
+        <p>Seu dado já existe em nosso banco de dados ou contém dados inválidos.</p>
+    </h4>
+    <p><a href="{{ url_for('index') }}">voltar</a></p>
+{% endblock %}

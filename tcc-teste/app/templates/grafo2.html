@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['teste1', 0],
+          ['Superior a 9', {{vermelho}}],
+		      ['Entre 7 e 9', {{laranja}}],
+          ['Menor que 4', {{verde}}],
+          ['teste5', 0],
+          ['teste6', 0],
+          ['teste7', 0],
+          ['teste8', 0],
+          ['teste9',  0],
+          ['teste10', 0],
+          ['teste12', 0],
+		      ['teste13', 0],
+          ['Entre 4 e 7', {{amarelo}}]
+
+        ]);
+
+        var options = {
+          title: 'Pendências no Servidor: {{nome}}'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 75%; height: 80%;"></div>
+    <a href="" onclick="window.close()">Fechar</a>
+  </body>
+</html>

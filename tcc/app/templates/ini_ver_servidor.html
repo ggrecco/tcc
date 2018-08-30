@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block app_content %}
+    <h1 class="text-center">Servidores</h1>
+{% if tamanho != 0 %}
+<div class="table-responsive col-md-12">
+    <table id="myTable" class="table table-striped border-spacing padding">
+    <thead>
+        <tr>
+            <th class="text-center">Data Scan</th>
+            <th class="text-center">Nome</th>
+            <th class="text-center">Site</th>
+            <th class="text-center">IPv4</th>
+            <th class="text-center">Opções</th>
+            <th class="text-center" style="background-color:#00c400">V</th>
+            <th class="text-center" style="background-color:#d1ff00">A</th>
+            <th class="text-center" style="background-color:#ff9c20">L</th>
+            <th class="text-center" style="background-color:#ff0000">V</th>
+        </tr>
+    </thead>
+{% for servidor in servidores %}
+        <tr class="text-center">
+            <td>{{ moment(servidor.timestamp).fromNow() }}</td>
+            <td><a href="{{ url_for('dados', nome=servidor.nome) }}">{{ servidor.nome }}</a></td>
+            <td>{{ servidor.url }}</td>
+            <td>{{ servidor.ip }}</td>
+            <td>
+                <a class="btn btn-warning" href="{{ url_for('altera_servidor',
+                server=servidor.nome, serverid=servidor.id) }}">Alterar</a>
+                <a class="btn btn-danger" href="{{ url_for('deleta_servidor', server=servidor.nome, serverid=servidor.id) }}">Excluir</a>
+                <a onclick="clickLoad()" class="btn btn-success" href="{{ url_for('dados',
+                nome=servidor.nome) }}">Visualizar<span class="badge badge-light">?</span></a>
+            </td>
+            <td class="text-center"> <img class="background-image" src="{{ url_for('static', filename='img/faq2.png') }}"></td>
+            <td class="text-center"><img class="background-image" src="{{ url_for('static', filename='img/faq2.png') }}"></td>
+            <td class="text-center"><img class="background-image" src="{{ url_for('static', filename='img/faq2.png') }}"></td>
+            <td class="text-center"><img class="background-image" src="{{ url_for('static', filename='img/faq2.png') }}"></td>
+        </tr>
+{% endfor %}
+    </table>
+</div>
+{% else %}
+<div class="alert alert-info text-center">
+    Não há servidores pesquisados
+</div>
+{% endif %}
+{% endblock %}
