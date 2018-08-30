@@ -34,7 +34,7 @@ def busca_ip(site):
     s = str(site)
     # os.system("host " + s + " | awk '{print $4}' > ip.txt")
     os.system('ping -c1 ' + s + " -4 | awk '{print $3}' > ip.txt")
-    arq = open('/home/ggrecco/Documentos/python/flask/tcc-teste/ip.txt', 'r')
+    arq = open('../tcc-teste/ip.txt', 'r')
     ip = arq.read()
     b = ip.split("(")
     c = b[1].split(")")
